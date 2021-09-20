@@ -79,9 +79,13 @@ function addTaskToCompleted(taskElement /* HTMLELement */) {
     const taskTimestamp = taskElement.querySelector(".inner > p").innerText;
 
     const newTodo = makeTodo(taskTitle, taskTimestamp, true);
+    const todo = findTodo(taskElement[TODO_ITEMID]);
+       todo.isCompleted = true;
+       newTodo[TODO_ITEMID] = todo.id;
 
     listCompleted.append(newTodo);
     taskElement.remove();
+    updateDataToStorage();
 }
 
 function removeTaskFromCompleted(taskElement /* HTMLELement */) {
